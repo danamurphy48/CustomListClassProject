@@ -77,9 +77,63 @@ namespace CustomListTests
             //assert
             Assert.AreEqual(expected, actual);
         }
+
+        //2, 4, 6, 8
+        //2, 4, 6, 8, 10
+        [TestMethod]
+        public void Add_AddNewValueToListAndCopyOldList_CopiedCorrectly()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+
+            //act
+            testList.Add(10);
+            testList.Add(15);
+            testList.Add(20);
+            testList.Add(25);
+            testList.Add(30);
+
+            
+
+            //assert
+            Assert.AreEqual(10, testList[0]);
+        }
+
+
+        //1. { 1, 2, 3 } => { 1, 3 }
+        [TestMethod]
+        public void Remove_RemovedItemInList_ValuesShiftOver()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+
+            //act
+            testList.Add(10);
+            testList.Add(15);
+            testList.Add(20);
+            testList.Remove(15);
+
+            //assert
+            Assert.AreEqual(20, testList[1]);
+        }
+
+        [TestMethod]
+        public void Remove_RemovedItemInListAddAfterRemoval_ValuesShiftOver()
+        {
+            CustomList<int> testList = new CustomList<int>();
+
+            testList.Add(10);
+            testList.Add(15);
+            testList.Add(20);
+            testList.Remove(15);
+            testList.Add(25);
+
+            Assert.AreEqual(25, testList[3]);
+        }
+
         // what happens if you add multiple things (or add to a CustomList that already has some values)?
-            // what happens to the last-added item?
-            // what happens to the Count?
+        // what happens to the last-added item?
+        // what happens to the Count?
 
         // what happens if you add more items than the initial Capacity of the CustomList?
 
