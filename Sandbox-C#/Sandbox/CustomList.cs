@@ -10,8 +10,12 @@ namespace Sandbox
     {
         // member variables (HAS A)
         private T[] items;
-        private T[] capacity;
-        private T[] count;
+        private int capacity;
+        private int count;
+
+        public int Count { get { return count; } }
+
+        //capacity property
 
         // constructor (SPAWNER)
         public CustomList()
