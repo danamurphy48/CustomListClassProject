@@ -14,6 +14,7 @@ namespace Sandbox
         private int count;
 
         public int Count { get { return count; } }
+        public int Capacity { get { return capacity; } }
 
         //capacity property
 
