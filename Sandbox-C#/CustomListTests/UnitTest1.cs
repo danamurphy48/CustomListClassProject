@@ -40,7 +40,7 @@ namespace CustomListTests
             // assert
             Assert.AreEqual(expected, actual);
         }
-        
+
         [TestMethod]
         public void Add_AddingMultipleValuesToCustomList_AddedValueGoesToNextIncrement()
         {
@@ -93,8 +93,6 @@ namespace CustomListTests
             testList.Add(25);
             testList.Add(30);
 
-            
-
             //assert
             Assert.AreEqual(10, testList[0]);
         }
@@ -129,6 +127,23 @@ namespace CustomListTests
             testList.Add(25);
 
             Assert.AreEqual(25, testList[3]);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveFirstItemInList_CountValuesCustomList()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int itemToRemove = 10;
+            int expected = 0;
+            int actual;
+
+            // act
+            testList.Remove(itemToRemove);
+            actual = testList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
         }
 
         // what happens if you add multiple things (or add to a CustomList that already has some values)?
