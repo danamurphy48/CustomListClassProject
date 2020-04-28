@@ -14,20 +14,42 @@ namespace Sandbox
         private int count;
 
         public int Count { get { return count; } }
-        public int Capacity { get { return capacity; } }
+        public int Capacity { get { return capacity; } } //set capacity is valuable and make it large like 400
 
-        //capacity property
+        public T this[int index]    //middleman to get into array
+        {
+            get
+            {
+                if (index < count && index >=0)
+                {
+                    return items[index];
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException();//use this for string: ArgumentOutOfRangeException
+                }
+                
+            }
+            set
+            {
+                items[index] = value;
+            }
+        }
 
         // constructor (SPAWNER)
         public CustomList()
         {
-            items = new T[4];
+            count = 0;
+            capacity = 4;
+            items = new T[capacity];
         }
 
         // member methods (CAN DO)
         public void Add(T item)
         {
-
+            items[count] = item;
+            count++;
+            //if statement for when capacity exceeds 4
         }
         public bool Remove(T item)
         {

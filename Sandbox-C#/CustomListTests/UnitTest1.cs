@@ -130,12 +130,12 @@ namespace CustomListTests
         }
 
         [TestMethod]
-        public void Remove_RemoveFirstItemInList_CountValuesCustomList()
+        public void Remove_RemoveFirstValueInList_CountValuesCustomList()
         {
             // arrange
             CustomList<int> testList = new CustomList<int>();
             int itemToRemove = 10;
-            int expected = 0;
+            int expected = 15;
             int actual;
 
             // act
@@ -146,12 +146,138 @@ namespace CustomListTests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void Remove_RemoveRepeatedValueInList_ValuesShiftOver()  //fix expected and actual. swapped.
+        {
+            CustomList<int> testList = new CustomList<int>();
+            //int itemToRemove = 15;
+            int expected = 20;
+
+            testList.Add(10);
+            testList.Add(15);
+            testList.Add(20);
+            testList.Add(15);
+            testList.Remove(15);
+            int actual = testList[1];
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveTwoValuesInList_ValuesCopyCorrectly()
+        {
+            CustomList<int> testList = new CustomList<int>();
+            
+            testList.Add(10);
+            testList.Add(15);
+            testList.Add(20);
+            testList.Add(15);
+            testList.Remove(15);
+            testList.Remove(20);
+            //int actual;
+
+            Assert.AreEqual(15, testList[1]);
+        }
+        [TestMethod]
+        public void Remove_RemoveTwoValuesInList_CountValuesCustomList()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 2;
+            int actual;
+
+            // act
+            testList.Add(10);
+            testList.Add(15);
+            testList.Add(20);
+            testList.Add(15);
+            testList.Remove(15);
+            testList.Remove(20);
+            actual = testList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveTwoSameValuesInList_CountValuesInCustomList()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 3;
+            int actual;
+
+            // act
+            testList.Add(10);
+            testList.Add(15);
+            testList.Add(20);
+            testList.Add(15);
+            testList.Remove(15);
+            testList.Remove(15);
+            actual = testList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Remove_RemoveTwoSameValuesInList_FirstValueShiftsCorrectlyInCustomList()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 10;
+
+            // act
+            testList.Add(10);
+            testList.Add(15);
+            testList.Add(20);
+            testList.Add(15);
+            testList.Remove(15);
+            testList.Remove(15);
+
+            int actual = testList[0];
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveTwoSameValuesInList_SecondValueShiftsCorrectlyInCustomList()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 20;
+            int actual;
+
+            // act
+            testList.Add(10);
+            testList.Add(15);
+            testList.Add(20);
+            testList.Add(15);
+            testList.Remove(15);
+            testList.Remove(15);
+            actual = testList[1];
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void Remove_RemoveValueAtEndOfList_ExceptionThrown()
+        {
+            CustomList<int> testList = new CustomList<int>();
+
+            testList.Add(10);
+            testList.Add(15);
+            testList.Add(20);
+            testList.Remove(20);
+            //int actual = testList[2];
+        }
         // what happens if you add multiple things (or add to a CustomList that already has some values)?
         // what happens to the last-added item?
         // what happens to the Count?
 
         // what happens if you add more items than the initial Capacity of the CustomList?
-
+        //remove a value that is not even in the list
     }
 }
 //capacity is built into list
