@@ -14,7 +14,7 @@ namespace Sandbox
         private int count;
 
         public int Count { get { return count; } }
-        public int Capacity { get { return capacity; } } //set capacity is valuable and make it large like 400
+        public int Capacity { get { return capacity; } set { capacity = value; } } //set capacity is valuable and make it large like 400
 
         public T this[int index]    //middleman to get into array
         {
@@ -26,7 +26,7 @@ namespace Sandbox
                 }
                 else
                 {
-                    throw new IndexOutOfRangeException();//use this for string: ArgumentOutOfRangeException
+                    throw new ArgumentOutOfRangeException();
                 }
                 
             }
@@ -49,6 +49,13 @@ namespace Sandbox
         {
             items[count] = item;
             count++;
+            if (capacity == count)
+            {
+                //1. 
+                //2.
+                //3.
+            }
+            
             //if statement for when capacity exceeds 4
         }
         public bool Remove(T item)

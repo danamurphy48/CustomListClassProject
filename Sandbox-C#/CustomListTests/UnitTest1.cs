@@ -126,7 +126,7 @@ namespace CustomListTests
             testList.Remove(15);
             testList.Add(25);
 
-            Assert.AreEqual(25, testList[3]);
+            Assert.AreEqual(25, testList[2]);
         }
 
         [TestMethod]
@@ -135,10 +135,11 @@ namespace CustomListTests
             // arrange
             CustomList<int> testList = new CustomList<int>();
             int itemToRemove = 10;
-            int expected = 15;
+            int expected = 0;
             int actual;
 
             // act
+            testList.Add(itemToRemove);
             testList.Remove(itemToRemove);
             actual = testList.Count;
 
@@ -147,10 +148,9 @@ namespace CustomListTests
         }
 
         [TestMethod]
-        public void Remove_RemoveRepeatedValueInList_ValuesShiftOver()  //fix expected and actual. swapped.
+        public void Remove_RemoveRepeatedValueInList_ValuesShiftOver()
         {
             CustomList<int> testList = new CustomList<int>();
-            //int itemToRemove = 15;
             int expected = 20;
 
             testList.Add(10);
@@ -174,7 +174,6 @@ namespace CustomListTests
             testList.Add(15);
             testList.Remove(15);
             testList.Remove(20);
-            //int actual;
 
             Assert.AreEqual(15, testList[1]);
         }
@@ -204,7 +203,7 @@ namespace CustomListTests
         {
             // arrange
             CustomList<int> testList = new CustomList<int>();
-            int expected = 3;
+            int expected = 2;
             int actual;
 
             // act
@@ -261,7 +260,7 @@ namespace CustomListTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void Remove_RemoveValueAtEndOfList_ExceptionThrown()
         {
             CustomList<int> testList = new CustomList<int>();
@@ -269,8 +268,8 @@ namespace CustomListTests
             testList.Add(10);
             testList.Add(15);
             testList.Add(20);
-            testList.Remove(20);
-            //int actual = testList[2];
+
+            int value = testList[3];
         }
         // what happens if you add multiple things (or add to a CustomList that already has some values)?
         // what happens to the last-added item?
