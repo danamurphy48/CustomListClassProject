@@ -47,7 +47,6 @@ namespace Sandbox
         // member methods (CAN DO)
         public void Add(T item)
         {
-            
             if (capacity == count)
             {
                 //0. Make array
@@ -55,7 +54,7 @@ namespace Sandbox
                 T[] tempArray = new T[capacity*=2];
 
                 //1. Copy array
-                
+
                 //int index = 0;
                 //foreach (T itemInArray in items)
                 //{
@@ -71,19 +70,49 @@ namespace Sandbox
                 tempArray[count] = item;
                 //4. reassign items array to tempArray
                 items = tempArray;
-
             }
             else
             {
                 items[count] = item;
             }
             count++;
-
-
-            //if statement for when capacity exceeds 4
         }
         public bool Remove(T item)
         {
+            //1. read current array
+            T[] valueToRemove = new T[capacity];
+
+            //2. find remove value///////swap the for and if
+            for (int i = 0; i < count; i++)
+            {
+                if (item.Equals(items[i]))
+                {
+                    count--;
+                    items[i] = items[i + 1];
+                }
+                
+            }//test build new array? manipulate items directly & loop or former+bool check?
+            //if (valueToRemove == items)
+            //{
+            //    for (int valueInArray = 0; valueInArray < count; valueInArray++)
+            //    {
+            //        valueToRemove[valueInArray] = items[valueInArray];
+            //    }
+            //    valueToRemove[count] = item;
+            //    items = valueToRemove;
+            //}
+            //else
+            //{
+            //    items[count] = item;
+            //}
+            //count--;
+
+
+            //3. replace value with next index in line
+            //4. shift array to move values by location of value to remove
+            //5. don't need to decrease capacity probably
+            //6. count--
+            
             return false;
         }
     }
