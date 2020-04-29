@@ -47,15 +47,39 @@ namespace Sandbox
         // member methods (CAN DO)
         public void Add(T item)
         {
-            items[count] = item;
-            count++;
+            
             if (capacity == count)
             {
-                //1. 
-                //2.
-                //3.
+                //0. Make array
+                // 2. double capacity
+                T[] tempArray = new T[capacity*=2];
+
+                //1. Copy array
+                
+                //int index = 0;
+                //foreach (T itemInArray in items)
+                //{
+                //    tempArray[index] = itemInArray;
+                //    index++;
+                //}
+                for (int itemInArray = 0; itemInArray < count; itemInArray++)
+                {
+                    tempArray[itemInArray] = items[itemInArray];
+                }
+
+                //3. add at next available index
+                tempArray[count] = item;
+                //4. reassign items array to tempArray
+                items = tempArray;
+
             }
-            
+            else
+            {
+                items[count] = item;
+            }
+            count++;
+
+
             //if statement for when capacity exceeds 4
         }
         public bool Remove(T item)
