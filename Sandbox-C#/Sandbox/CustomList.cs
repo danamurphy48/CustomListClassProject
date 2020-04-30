@@ -141,5 +141,16 @@ namespace Sandbox
         //ToString()
         //you are overriding C# ToString()
         //you can use .ToString() inside the method
+
+        public override string ToString()
+        {
+            return base.ToString();
+            //1. needs to read contents of array -XX
+            //2. needs to convert contents in array to string -- can use .ToString()
+            //3. needs to return contents as a string in one line
+            
+            //"26810"
+            //string result = numbers.ToString();
+        }
     }
 }

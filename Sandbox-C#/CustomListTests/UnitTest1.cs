@@ -271,12 +271,27 @@ namespace CustomListTests
 
             int value = testList[3];
         }
-        // what happens if you add multiple things (or add to a CustomList that already has some values)?
-        // what happens to the last-added item?
-        // what happens to the Count?
 
-        // what happens if you add more items than the initial Capacity of the CustomList?
-        //remove a value that is not even in the list
+        //"26810"
+        //string result = numbers.ToString();
+        [TestMethod]
+        public void ToString_ConvertItemToString_ItemIsString()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            string expected = "23";
+            string actual;
+            
+            //act
+            testList.Add(2);
+            testList.Add(3);
+            testList.ToString();
+            actual = testList.ToString();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+
+        }
     }
 }
 //capacity is built into list
@@ -286,3 +301,9 @@ namespace CustomListTests
 //int[] items = new int[4];
 //items = new int[8]; ---- this removes first array so bye bye 
 //need logic to copy values
+// what happens if you add multiple things (or add to a CustomList that already has some values)?
+// what happens to the last-added item?
+// what happens to the Count?
+
+// what happens if you add more items than the initial Capacity of the CustomList?
+//remove a value that is not even in the list
