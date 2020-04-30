@@ -285,7 +285,6 @@ namespace CustomListTests
             //act
             testList.Add(2);
             testList.Add(3);
-            testList.ToString();
             actual = testList.ToString();
 
             //assert
