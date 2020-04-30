@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office.CustomUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -81,25 +82,47 @@ namespace Sandbox
         {
             //1. read current array
             T[] valueToRemove = new T[capacity];
-
-            //2. find remove value///////swap the for and if
-            for (int i = 0; i < count; i++)
+            bool shiftValue = false;
+            //2. find remove value 
+            //manipulate items directly and loop
+            for (int i = 0; i < count; i++) //this method copies latter value to preceding index but doesn't shift the rest
             {
+                //if I haven't found item to remove yet
+                //if item does equal value in items array
+                //if we have found value to be "removed"
                 if (item.Equals(items[i]))
                 {
                     count--;
                     items[i] = items[i + 1];
+                    shiftValue = true;
                 }
-                
-            }//test build new array? manipulate items directly & loop or former+bool check?
-            //if (valueToRemove == items)
+
+                else if (shiftValue == true)
+                {
+                    
+                    items[i] = items[i+1];
+                    //i++;
+                    
+                    //need all items in array to move one index forward for each remove called
+                    //return true;
+                }
+            }
+            //count--;
+
+
+
+            //build new array and use bool check
+            //this method is just adding the value to remove instead of removing it
+            //if (valueToRemove == items)//this doesn't work probably need to use above loop
             //{
-            //    for (int valueInArray = 0; valueInArray < count; valueInArray++)
+            //    for (int valueInArray = 0; valueInArray < count; valueInArray--)
             //    {
             //        valueToRemove[valueInArray] = items[valueInArray];
+            //        count--;
             //    }
             //    valueToRemove[count] = item;
             //    items = valueToRemove;
+            //    return true;
             //}
             //else
             //{
@@ -107,13 +130,16 @@ namespace Sandbox
             //}
             //count--;
 
-
+            return shiftValue;//figure out how to make this work
+            
+            
             //3. replace value with next index in line
             //4. shift array to move values by location of value to remove
             //5. don't need to decrease capacity probably
             //6. count--
-            
-            return false;
         }
+        //ToString()
+        //you are overriding C# ToString()
+        //you can use .ToString() inside the method
     }
 }

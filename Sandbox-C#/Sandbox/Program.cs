@@ -17,7 +17,10 @@ namespace Sandbox
             numbers.Add(6);
             numbers.Add(8);
             numbers.Add(10);
-            numbers.Remove(2);
+            numbers.Remove(4); //2 6 8 10
+
+            //"26810"
+            string result = numbers.ToString();
         }
     }
 }
