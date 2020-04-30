@@ -21,7 +21,7 @@ namespace Sandbox
         {
             get
             {
-                if (index < count && index >=0)
+                if (index < count && index >= 0)
                 {
                     return items[index];
                 }
@@ -29,7 +29,7 @@ namespace Sandbox
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                
+
             }
             set
             {
@@ -52,7 +52,7 @@ namespace Sandbox
             {
                 //0. Make array
                 // 2. double capacity
-                T[] tempArray = new T[capacity*=2];
+                T[] tempArray = new T[capacity *= 2];
 
                 //1. Copy array
 
@@ -81,7 +81,7 @@ namespace Sandbox
         public bool Remove(T item)
         {
             //1. read current array
-            T[] valueToRemove = new T[capacity];
+            //T[] valueToRemove = new T[capacity];
             bool shiftValue = false;
             //2. find remove value 
             //manipulate items directly and loop
@@ -99,17 +99,10 @@ namespace Sandbox
 
                 else if (shiftValue == true)
                 {
-                    
-                    items[i] = items[i+1];
-                    //i++;
-                    
-                    //need all items in array to move one index forward for each remove called
-                    //return true;
+                    items[i] = items[i + 1];
                 }
             }
-            //count--;
-
-
+            return shiftValue;
 
             //build new array and use bool check
             //this method is just adding the value to remove instead of removing it
@@ -130,9 +123,9 @@ namespace Sandbox
             //}
             //count--;
 
-            return shiftValue;//figure out how to make this work
-            
-            
+
+
+
             //3. replace value with next index in line
             //4. shift array to move values by location of value to remove
             //5. don't need to decrease capacity probably
@@ -144,13 +137,26 @@ namespace Sandbox
 
         public override string ToString()
         {
-            return base.ToString();
-            //1. needs to read contents of array -XX
-            //2. needs to convert contents in array to string -- can use .ToString()
-            //3. needs to return contents as a string in one line
-            
-            //"26810"
-            //string result = numbers.ToString();
+            //2 4 6 8
+            //"2468"
+            string result = "";
+            for (int i = 0; i < count; i++)
+            {
+
+                result = result + items[i].ToString(); //result += items[i].ToString();
+            }
+            return result;
         }
+                
+        //    }
+        //    Console.WriteLine(result);
+        //    return result;
+        //    //1. needs to read contents of array -XX
+        //    //2. needs to convert contents in array to string -- can use .ToString()
+        //    //3. needs to return contents as a string in one line i.e., "26810"
+            
+        //    //"26810"
+        //    //string result = numbers.ToString();
+        //}
     }
 }

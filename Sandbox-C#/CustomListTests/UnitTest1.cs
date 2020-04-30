@@ -281,7 +281,7 @@ namespace CustomListTests
             CustomList<int> testList = new CustomList<int>();
             string expected = "23";
             string actual;
-            
+
             //act
             testList.Add(2);
             testList.Add(3);
@@ -289,7 +289,24 @@ namespace CustomListTests
 
             //assert
             Assert.AreEqual(expected, actual);
+        }
 
+        [TestMethod]
+        public void ToString_ConvertItemsToStringAfterRemoval_ItemsAreStrings()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            string expected = "3";
+            string actual;
+
+            //act
+            testList.Add(2);
+            testList.Add(3);
+            testList.Remove(2);
+            actual = testList.ToString();
+
+            //assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }
