@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Office.CustomUI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sandbox
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable
     {
         // member variables (HAS A)
         private T[] items;
@@ -15,7 +16,7 @@ namespace Sandbox
         private int count;
 
         public int Count { get { return count; } }
-        public int Capacity { get { return capacity; } set { capacity = value; } } //set capacity is valuable and make it large like 400
+        public int Capacity { get { return capacity; } set { capacity = value; } }
 
         public T this[int index]    //middleman to get into array
         {
@@ -29,7 +30,6 @@ namespace Sandbox
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-
             }
             set
             {
@@ -123,17 +123,12 @@ namespace Sandbox
             //}
             //count--;
 
-
-
-
             //3. replace value with next index in line
             //4. shift array to move values by location of value to remove
             //5. don't need to decrease capacity probably
             //6. count--
         }
-        //ToString()
-        //you are overriding C# ToString()
-        //you can use .ToString() inside the method
+
 
         public override string ToString()
         {
@@ -143,12 +138,14 @@ namespace Sandbox
             for (int i = 0; i < count; i++)
             {
 
-                result = result + items[i].ToString(); //result += items[i].ToString();
+                result += items[i].ToString();
             }
             return result;
         }
-                
-        //    }
+         
+        //ToString()
+        //you are overriding C# ToString()
+        //you can use .ToString() inside the method
         //    Console.WriteLine(result);
         //    return result;
         //    //1. needs to read contents of array -XX
@@ -157,6 +154,64 @@ namespace Sandbox
             
         //    //"26810"
         //    //string result = numbers.ToString();
+
+        public static CustomList<T> operator +(CustomList<T> array1, CustomList<T> array2)
+        {
+            CustomList<T> array3 = new CustomList<T>();
+            for (int i = 0; i < array1.Count; i++)
+            {
+                array3.Add(array1[i]);
+            }
+            for (int i = 0; i < array2.Count; i++)
+            {
+                array3.Add(array2[i]);
+            }
+            return array3;
+        }
+        public CustomList<T> Zip(CustomList<T> array1, CustomList<T> array2)
+        {
+            //array1: 1 3 5
+            //array2: 2 4 6
+            //1 2 3 4 5 6
+            CustomList<T> arrayLength = 0;
+            CustomList<T> array3 = new CustomList<T>();
+            if (array1.Count >= array2.Count)
+            {
+                arrayLength = array1;
+            }
+            else
+            {
+                arrayLength = array2;
+            }
+            for (int i = 0; i < arrayLength.Count; i++)
+            {
+                array3.Add(array1[i]);
+                array3.Add(array2[i]);
+            }
+
+            return array3;
+        }
+        public static CustomList<T> operator -(CustomList<T> array1, CustomList<T> array2)
+        {
+            CustomList<int> array3 = new CustomList<int>();
+            array3.items = array1.items - array2.items;
+            array3.count = array1.count - array2.count;
+            array3.capacity = array1.capacity - array2.capacity;
+            return numbers;
+        }
+
+        //public IEnumerable GetEnumerator()
+        //{
+            
         //}
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return items[i];
+
+            }
+        }
     }
 }

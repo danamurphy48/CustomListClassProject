@@ -18,9 +18,22 @@ namespace Sandbox
             numbers.Add(8);
             numbers.Add(10);
             numbers.Remove(4); //2 6 8 10
-
+            numbers[0] = 50;
+            int number = numbers[2];
             //"26810"
             string result = numbers.ToString();
+
+            CustomList<int> array1 = new CustomList<int>() { 1, 3, 5 };
+            array1.Add(1);
+            array1.Add(3);
+            array1.Add(5);
+            //string result = array1.ToString();
+            CustomList<int> array2 = new CustomList<int>() { 2, 4, 6 };
+            array2.Add(2);
+            array2.Add(4);
+            array2.Add(6);
+            // string result = array2.ToString();
+            CustomList<int> array3 = array1 + array2;
         }
     }
 }
