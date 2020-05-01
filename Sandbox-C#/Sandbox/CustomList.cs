@@ -173,7 +173,7 @@ namespace Sandbox
             //array1: 1 3 5
             //array2: 2 4 6
             //1 2 3 4 5 6
-            CustomList<T> arrayLength = 0;
+            CustomList<T> arrayLength;
             CustomList<T> array3 = new CustomList<T>();
             if (array1.Count >= array2.Count)
             {
@@ -188,7 +188,6 @@ namespace Sandbox
                 array3.Add(array1[i]);
                 array3.Add(array2[i]);
             }
-
             return array3;
         }
         public static CustomList<T> operator -(CustomList<T> array1, CustomList<T> array2)
